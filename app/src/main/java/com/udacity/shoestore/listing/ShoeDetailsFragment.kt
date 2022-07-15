@@ -15,7 +15,7 @@ import com.udacity.shoestore.databinding.FragmentLoginBinding
 import com.udacity.shoestore.databinding.FragmentShoeDetailBinding
 import com.udacity.shoestore.databinding.FragmentShoeListingBinding
 
-class ShoeDetailsFragment: Fragment() {
+class ShoeDetailsFragment : Fragment() {
 
     private val viewModel: ShoeViewModel by activityViewModels()
     private val args: ShoeDetailsFragmentArgs by navArgs()
@@ -25,11 +25,13 @@ class ShoeDetailsFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding: FragmentShoeDetailBinding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_shoe_detail, container, false)
-        binding.viewModel = viewModel
-        binding.lifecycleOwner = viewLifecycleOwner
-        binding.shoe = args.shoe
+        val binding = FragmentShoeDetailBinding.inflate(inflater, container, false)
+
+        with(binding) {
+            viewModel = this@ShoeDetailsFragment.viewModel
+            lifecycleOwner = viewLifecycleOwner
+            shoe = args.shoe
+        }
 
         viewModel.navigateToListing.observe(viewLifecycleOwner) { navigate ->
             if (navigate != null && navigate) {

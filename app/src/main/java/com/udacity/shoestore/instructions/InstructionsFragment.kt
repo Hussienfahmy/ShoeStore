@@ -21,10 +21,11 @@ class InstructionsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding: FragmentInstructionsBinding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_instructions, container, false)
-        binding.viewModel = viewModel
-        binding.lifecycleOwner = viewLifecycleOwner
+        val binding = FragmentInstructionsBinding.inflate(inflater, container, false)
+        with(binding) {
+            viewModel = this@InstructionsFragment.viewModel
+            lifecycleOwner = viewLifecycleOwner
+        }
 
         viewModel.navigateTozListingScreenEvent.observe(viewLifecycleOwner) { navigate ->
             if (navigate != null && navigate) {

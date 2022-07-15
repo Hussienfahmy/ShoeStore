@@ -24,10 +24,11 @@ class ShoeListingFragment : Fragment(), MenuProvider {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding: FragmentShoeListingBinding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_shoe_listing, container, false)
-        binding.viewModel = viewModel
-        binding.lifecycleOwner = viewLifecycleOwner
+        val binding = FragmentShoeListingBinding.inflate(inflater, container, false)
+        with(binding) {
+            viewModel = this@ShoeListingFragment.viewModel
+            lifecycleOwner = viewLifecycleOwner
+        }
 
         viewModel.navigateToDetailsEvent.observe(viewLifecycleOwner) { shoe ->
             if (shoe != null) {
@@ -40,7 +41,11 @@ class ShoeListingFragment : Fragment(), MenuProvider {
             }
         }
 
-        (requireActivity() as MenuHost).addMenuProvider(this, viewLifecycleOwner, Lifecycle.State.CREATED)
+        (requireActivity() as MenuHost).addMenuProvider(
+            this,
+            viewLifecycleOwner,
+            Lifecycle.State.CREATED
+        )
 
         return binding.root
     }

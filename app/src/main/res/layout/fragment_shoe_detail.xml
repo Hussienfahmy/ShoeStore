@@ -5,6 +5,7 @@
     tools:context=".listing.ShoeDetailsFragment">
 
     <data>
+        <import type="com.udacity.shoestore.Converter"/>
         <variable
             name="shoe"
             type="com.udacity.shoestore.models.Shoe" />
@@ -14,10 +15,11 @@
             type="com.udacity.shoestore.listing.ShoeViewModel" />
     </data>
 
+    <!--    used ConstraintLayout to reduce the layout hierarchy to achieve the same design-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="10dp">
+        android:padding="@dimen/small_padding">
 
         <TextView
             android:id="@+id/textView7"
@@ -46,8 +48,8 @@
             android:text="@={shoe.name}"
             app:layout_constraintBaseline_toBaselineOf="@+id/edit_text_2"
             app:layout_constraintEnd_toStartOf="@+id/edit_text_2"
-            app:layout_constraintHorizontal_weight="3"
             app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_weight="3"
             app:layout_constraintStart_toStartOf="parent" />
 
         <EditText
@@ -56,7 +58,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/size_no_format"
             android:inputType="numberDecimal"
-            android:text="@={``+ shoe.size}"
+            android:text="@={Converter.doubleTOString(shoe.size)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_weight="1"
@@ -67,9 +69,9 @@
             android:id="@+id/textView9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_margin"
             android:text="@string/company"
             android:textStyle="bold"
-            android:layout_marginTop="10dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edit_text_1" />
 
@@ -88,9 +90,9 @@
             android:id="@+id/textView10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_margin"
             android:text="@string/description"
             android:textStyle="bold"
-            android:layout_marginTop="10dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editText" />
 
@@ -111,9 +113,9 @@
             android:id="@+id/button4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="@{() -> viewModel.cancel()}"
             android:text="@string/cancel"
             android:textAllCaps="false"
-            android:onClick="@{() -> viewModel.cancel()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 

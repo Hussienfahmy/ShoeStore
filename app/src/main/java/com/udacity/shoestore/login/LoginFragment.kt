@@ -20,10 +20,11 @@ class LoginFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding: FragmentLoginBinding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
-        binding.viewModel = viewModel
-        binding.lifecycleOwner = viewLifecycleOwner
+        val binding = FragmentLoginBinding.inflate(inflater, container, false)
+        with(binding) {
+            viewModel = this@LoginFragment.viewModel
+            lifecycleOwner = viewLifecycleOwner
+        }
 
         viewModel.navigateToWelcomeScreenEvent.observe(viewLifecycleOwner) { navigate ->
             if (navigate != null && navigate) {

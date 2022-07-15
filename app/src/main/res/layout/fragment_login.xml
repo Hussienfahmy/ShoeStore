@@ -5,11 +5,13 @@
     tools:context=".login.LoginFragment">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.udacity.shoestore.login.LoginViewModel" />
     </data>
 
+    <!--    used ConstraintLayout to reduce the layout hierarchy to achieve the same design-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -45,8 +47,8 @@
             android:id="@+id/button2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/create"
             android:onClick="@{() -> viewModel.navigateToWelcomeScreen()}"
+            android:text="@string/create"
             app:layout_constraintBaseline_toBaselineOf="@+id/button"
             app:layout_constraintEnd_toStartOf="@+id/button"
             app:layout_constraintHorizontal_bias="0.5"
@@ -56,8 +58,8 @@
             android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/login"
             android:onClick="@{() -> viewModel.navigateToWelcomeScreen()}"
+            android:text="@string/login"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"

@@ -12,7 +12,7 @@ import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentWelcomeBinding
 import com.udacity.shoestore.welcome.WelcomeViewModel
 
-class WelcomeFragment: Fragment() {
+class WelcomeFragment : Fragment() {
 
     private val viewModel: WelcomeViewModel by viewModels()
 
@@ -21,10 +21,11 @@ class WelcomeFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding: FragmentWelcomeBinding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_welcome, container, false)
-        binding.viewModel = viewModel
-        binding.lifecycleOwner = viewLifecycleOwner
+        val binding = FragmentWelcomeBinding.inflate(inflater, container, false)
+        with(binding) {
+            viewModel = this@WelcomeFragment.viewModel
+            lifecycleOwner = viewLifecycleOwner
+        }
 
         viewModel.navigateToInstructionsScreenEvent.observe(viewLifecycleOwner) { navigate ->
             if (navigate != null && navigate) {
@@ -38,5 +39,5 @@ class WelcomeFragment: Fragment() {
 
         return binding.root
     }
-    
+
 }

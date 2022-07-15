@@ -5,6 +5,7 @@
     tools:context=".listing.ShoeListingFragment">
 
     <data>
+
         <import type="com.udacity.shoestore.models.Shoe" />
 
         <variable
@@ -12,11 +13,13 @@
             type="com.udacity.shoestore.listing.ShoeViewModel" />
     </data>
 
+    <!--    to make the view scrollable-->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">
 
+        <!--        as we need only one child that have positioning power like Constrain layout-->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -31,7 +34,7 @@
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_margin="@dimen/small_margin"
                 android:contentDescription="@string/add_shoe"
                 android:onClick="@{() -> viewModel.navigateToDetailsScreen(Shoe.createNew())}"
                 android:src="@drawable/ic_add"
